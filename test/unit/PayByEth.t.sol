@@ -102,4 +102,10 @@ contract TestGenesis is Test {
         // Assert
         genesis._recordRefund(SENDER, refund);
     }
+
+    function test_revertWheneSendFails() public {
+        vm.prank(SENDER);
+        vm.expectRevert(Genesis.Genesis__TransferFailed.selector);
+        genesis._send(RECEIVER, 10 ether);
+    }
 }
